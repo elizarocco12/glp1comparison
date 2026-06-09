@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GLP-1 Price Comparison UK 2026</title>
+  <style>
+    :root {
+      --blue:#2563eb; --blue-light:#eff6ff; --blue-dark:#1e3a5f;
+      --green:#16a34a; --green-light:#f0fdf4;
+      --red:#dc2626;
+      --gray-50:#f9fafb; --gray-100:#f3f4f6; --gray-200:#e5e7eb;
+      --gray-400:#9ca3af; --gray-500:#6b7280; --gray-600:#4b5563;
+      --gray-800:#1f2937; --gray-900:#111827;
+      --purple:#7c3aed;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--gray-50);color:var(--gray-800);line-height:1.6;padding-bottom:80px;}
+
+    /* ── HEADER ── */
+    header{background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%);color:#fff;padding:44px 24px 32px;text-align:center;}
+    .hdr-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:5px 14px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px;}
+    .hdr-badge .live-dot{width:7px;height:7px;background:#4ade80;border-radius:50%;animation:blink 2s infinite;}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+    h1{font-size:clamp(22px,5vw,40px);font-weight:800;margin-bottom:8px;}
+    header .sub{font-size:15px;opacity:.85;max-width:560px;margin:0 auto 18px;}
+    .header-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+    .header-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border-radius:999px;padding:5px 14px;font-size:13px;font-weight:600;}
+
+    /* ── ORAL COMING SOON HERO ── */
+    .oral-hero{background:linear-gradient(135deg,#3730a3 0%,#6d28d9 40%,#be185d 100%);color:#fff;padding:52px 24px;text-align:center;}
+    .oral-hero .otag{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:5px 16px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px;}
+    .oral-hero h2{font-size:clamp(24px,5vw,44px);font-weight:900;margin-bottom:12px;line-height:1.15;}
+    .oral-hero h2 span{background:linear-gradient(90deg,#fde68a,#f9a8d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .oral-hero p{font-size:17px;opacity:.88;max-width:560px;margin:0 auto 28px;line-height:1.6;}
+    .oral-features{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:32px;}
+    .oral-feat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:10px 18px;font-size:14px;font-weight:600;}
+    .oral-feat .icon{margin-right:6px;}
+    .oral-cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+    .oral-cta-primary{background:#fff;color:#6d28d9;border-radius:10px;padding:14px 28px;font-size:16px;font-weight:800;text-decoration:none;transition:opacity .15s;cursor:pointer;border:none;}
+    .oral-cta-primary:hover{opacity:.9;}
+    .oral-cta-secondary{background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.5);color:#fff;border-radius:10px;padding:14px 28px;font-size:16px;font-weight:700;text-decoration:none;transition:opacity .15s;}
+    .oral-cta-secondary:hover{opacity:.8;}
+    .oral-timeline{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:36px;padding-top:32px;border-top:1px solid rgba(255,255,255,.2);}
+    .oral-step{text-align:center;min-width:120px;}
+    .oral-step .step-num{width:36px;height:36px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;margin:0 auto 8px;}
+    .oral-step .step-lbl{font-size:13px;opacity:.8;}
+    .oral-step .step-val{font-size:15px;font-weight:700;}
+
+    /* ── NAV TABS ── */
+    .tabs-wrap{background:#fff;border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:20;box-shadow:0 1px 6px rgba(0,0,0,.06);}
+    .tabs-inner{max-width:1100px;margin:0 auto;display:flex;overflow-x:auto;}
+    .tab-btn{flex-shrink:0;background:none;border:none;cursor:pointer;padding:16px 22px;font-size:14px;font-weight:600;color:var(--gray-600);border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;}
+    .tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);}
+    .tab-btn:hover:not(.active){color:var(--gray-900);background:var(--gray-50);}
+    .tab-btn .tab-badge{display:inline-block;background:#fef3c7;color:#92400e;font-size:10px;font-weight:800;border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:middle;}
+
+    /* ── PRICE FILTER BAR ── */
+    .filter-bar{background:var(--gray-50);border-bottom:1px solid var(--gray-200);padding:12px 24px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;}
+    .filter-bar label{font-size:13px;font-weight:700;color:var(--gray-600);}
+    .filter-bar select{border:1px solid var(--gray-200);border-radius:8px;padding:7px 12px;font-size:13px;background:#fff;cursor:pointer;outline:none;}
+    .filter-bar select:focus{border-color:var(--blue);}
+    .filter-sep{color:var(--gray-300);font-size:16px;}
+
+    /* ── MAIN ── */
+    main{max-width:1100px;margin:0 auto;padding:28px 16px 56px;}
+    .section{display:none;}
+    .section.active{display:block;}
+
+    /* ── CALLOUT ── */
+    .callout{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:12px 16px;font-size:13px;color:#92400e;margin-bottom:22px;display:flex;gap:10px;}
+    .callout .ico{font-size:17px;flex-shrink:0;}
+
+    /* ── STAT STRIP ── */
+    .stat-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:26px;}
+    .stat-card{background:#fff;border:1px solid var(--gray-200);border-radius:12px;padding:16px;text-align:center;}
+    .stat-card .num{font-size:22px;font-weight:800;color:var(--blue);}
+    .stat-card .lbl{font-size:12px;color:var(--gray-500);margin-top:2px;}
+
+    /* ── TABLE ── */
+    .table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--gray-200);box-shadow:0 1px 6px rgba(0,0,0,.05);margin-bottom:14px;}
+    table{width:100%;border-collapse:collapse;background:#fff;min-width:620px;}
+    thead tr{background:var(--gray-900);color:#fff;}
+    th{padding:13px 16px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.03em;white-space:nowrap;}
+    th:first-child{border-radius:11px 0 0 0;}th:last-child{border-radius:0 11px 0 0;}
+    tbody tr{border-bottom:1px solid var(--gray-100);transition:background .15s;}
+    tbody tr:hover{background:var(--gray-50);}
+    tbody tr:last-child{border-bottom:none;}
+    td{padding:13px 16px;font-size:14px;vertical-align:middle;}
+
+    /* Provider cell */
+    .prov-cell{display:flex;flex-direction:column;gap:3px;}
+    .prov-name{font-weight:800;font-size:14px;}
+    .prov-type{font-size:11px;font-weight:600;border-radius:999px;padding:2px 8px;display:inline-block;width:fit-content;}
+    .type-online{background:#dbeafe;color:#1e40af;}
+    .type-hybrid{background:#fae8ff;color:#6b21a8;}
+
+    /* Price cells */
+    .price-cell{font-weight:700;font-size:15px;}
+    .price-best{color:var(--green);background:var(--green-light);border-radius:6px;padding:2px 8px;}
+    .price-mid{color:var(--gray-800);}
+    .price-high{color:var(--red);}
+    .price-na{color:var(--gray-400);font-size:13px;font-weight:400;}
+
+    /* Chips */
+    .chip{font-size:11px;font-weight:600;border-radius:6px;padding:2px 7px;background:var(--gray-100);color:var(--gray-600);white-space:nowrap;}
+    .chip.y{background:#dcfce7;color:#166534;}
+    .chip.n{background:#fee2e2;color:#991b1b;}
+
+    /* CTA link */
+    .cta-link{display:inline-block;background:var(--blue);color:#fff;border-radius:7px;padding:6px 14px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;}
+    .cta-link:hover{background:#1d4ed8;}
+
+    /* Section header */
+    .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
+    .section-head h2{font-size:19px;font-weight:800;}
+    .section-head .sub{font-size:13px;color:var(--gray-500);}
+
+    /* Dose tabs */
+    .dose-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
+    .dose-btn{border:1px solid var(--gray-200);background:#fff;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer;color:var(--gray-600);transition:all .15s;}
+    .dose-btn.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+    .dose-btn:hover:not(.active){background:var(--gray-50);}
+
+    /* ── REFERRAL / REACTIVATION CARDS ── */
+    .offer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-bottom:28px;}
+    .offer-card{background:#fff;border:1px solid var(--gray-200);border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);transition:box-shadow .2s;}
+    .offer-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.09);}
+    .offer-card-head{padding:18px 20px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+    .offer-prov{font-size:17px;font-weight:800;}
+    .offer-saving{font-size:22px;font-weight:900;color:var(--green);}
+    .offer-saving small{font-size:13px;font-weight:600;color:var(--gray-500);display:block;}
+    .offer-card-body{padding:0 20px 18px;font-size:13px;color:var(--gray-600);}
+    .offer-desc{margin-bottom:12px;line-height:1.6;}
+    .offer-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+    .offer-tag{font-size:11px;font-weight:700;border-radius:6px;padding:3px 9px;background:var(--gray-100);color:var(--gray-600);}
+    .offer-tag.green{background:#dcfce7;color:#166534;}
+    .offer-tag.blue{background:#dbeafe;color:#1e40af;}
+    .offer-tag.amber{background:#fef3c7;color:#92400e;}
+    .offer-tag.purple{background:#ede9fe;color:#5b21b6;}
+    .offer-expiry{font-size:12px;color:var(--gray-400);margin-bottom:10px;}
+    .offer-cta{display:inline-block;background:var(--green);color:#fff;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;text-decoration:none;}
+    .offer-cta:hover{background:#15803d;}
+    .offer-cta.blue{background:var(--blue);}
+    .offer-cta.blue:hover{background:#1d4ed8;}
+    .offer-note{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:12px 16px;font-size:13px;color:#92400e;margin-bottom:20px;display:flex;gap:8px;}
+
+    /* ── TIPS ── */
+    .tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:24px;}
+    .tip-card{background:#fff;border:1px solid var(--gray-200);border-radius:12px;padding:18px;}
+    .tip-card .icon{font-size:20px;margin-bottom:8px;}
+    .tip-card h3{font-size:14px;font-weight:800;margin-bottom:5px;}
+    .tip-card p{font-size:13px;color:var(--gray-600);}
+
+    /* ── EMAIL CAPTURE SECTION ── */
+    .email-section{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);border-radius:16px;padding:52px 32px;text-align:center;margin-top:40px;color:#fff;}
+    .email-section .etag{display:inline-block;background:rgba(99,102,241,.3);border:1px solid rgba(99,102,241,.5);border-radius:999px;padding:4px 14px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px;color:#a5b4fc;}
+    .email-section h2{font-size:clamp(22px,4vw,34px);font-weight:800;margin-bottom:10px;line-height:1.25;}
+    .email-section h2 em{font-style:normal;background:linear-gradient(90deg,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .email-section .edesc{font-size:15px;opacity:.8;max-width:500px;margin:0 auto 28px;}
+    .email-form-row{display:flex;gap:10px;max-width:500px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
+    .email-form-row input[type=email]{flex:1;min-width:220px;border:none;border-radius:10px;padding:14px 18px;font-size:15px;outline:none;color:var(--gray-900);}
+    .email-form-row input::placeholder{color:var(--gray-400);}
+    .email-form-row button{background:linear-gradient(135deg,#6366f1,#db2777);color:#fff;border:none;border-radius:10px;padding:14px 28px;font-size:15px;font-weight:800;cursor:pointer;white-space:nowrap;transition:opacity .15s;}
+    .email-form-row button:hover{opacity:.9;}
+    .email-perks{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:22px;}
+    .email-perk{display:flex;align-items:center;gap:6px;font-size:13px;opacity:.75;}
+    .email-perk .ck{color:#4ade80;font-weight:800;}
+
+    /* ── STICKY BOTTOM EMAIL BAR ── */
+    .sticky-bar{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(90deg,#4f46e5,#7c3aed);color:#fff;padding:14px 24px;z-index:100;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;transform:translateY(100%);transition:transform .4s ease;box-shadow:0 -4px 20px rgba(0,0,0,.25);}
+    .sticky-bar.show{transform:translateY(0);}
+    .sticky-bar .sb-text{font-size:14px;font-weight:700;white-space:nowrap;}
+    .sticky-bar .sb-text span{font-weight:400;opacity:.85;}
+    .sticky-bar input[type=email]{border:none;border-radius:8px;padding:9px 14px;font-size:14px;outline:none;color:var(--gray-900);min-width:200px;flex:1;max-width:260px;}
+    .sticky-bar button.sb-btn{background:#fff;color:#4f46e5;border:none;border-radius:8px;padding:9px 18px;font-size:14px;font-weight:800;cursor:pointer;white-space:nowrap;transition:opacity .15s;}
+    .sticky-bar button.sb-btn:hover{opacity:.88;}
+    .sticky-bar .sb-close{background:none;border:none;color:rgba(255,255,255,.7);font-size:20px;cursor:pointer;line-height:1;padding:2px 6px;flex-shrink:0;}
+    .sticky-bar .sb-close:hover{color:#fff;}
+
+    /* ── SUCCESS POPUP ── */
+    .popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:center;justify-content:center;}
+    .popup-overlay.show{display:flex;}
+    .popup-box{background:#fff;border-radius:18px;padding:40px 36px;text-align:center;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:popIn .3s ease;}
+    @keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+    .popup-icon{font-size:56px;margin-bottom:16px;}
+    .popup-box h3{font-size:22px;font-weight:800;color:var(--gray-900);margin-bottom:10px;}
+    .popup-box p{font-size:15px;color:var(--gray-600);line-height:1.6;margin-bottom:24px;}
+    .popup-close-btn{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:12px 28px;font-size:15px;font-weight:700;cursor:pointer;transition:background .15s;}
+    .popup-close-btn:hover{background:#1d4ed8;}
+
+    /* ── DISCLAIMER ── */
+    .disclaimer{margin-top:36px;background:#fff;border:1px solid var(--gray-200);border-radius:12px;padding:18px 22px;font-size:13px;color:var(--gray-600);line-height:1.7;}
+    .disclaimer strong{color:var(--gray-800);}
+
+    /* ── FOOTER ── */
+    footer{background:var(--gray-900);color:var(--gray-400);text-align:center;padding:28px 16px;font-size:13px;}
+    footer a{color:#93c5fd;text-decoration:none;}
+
+    @media(max-width:640px){
+      header{padding:28px 16px 24px;}
+      .oral-hero{padding:36px 16px;}
+      .email-section{padding:32px 18px;}
+      .sticky-bar{gap:8px;}
+      .sticky-bar input{max-width:100%;flex:1 0 100%;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════
+     HEADER
+     To update weekly: change the date in <span id="lastUpdated">
+     ════════════════════════════════════ -->
+<header>
+  <div class="hdr-badge"><div class="live-dot"></div> Prices updated every week</div>
+  <h1>GLP-1 Price Comparison UK</h1>
+  <p class="sub">Compare Mounjaro &amp; Wegovy prices across 15+ UK providers — updated every Monday with the latest pricing.</p>
+  <div class="header-pills">
+    <div class="header-pill">📅 Last updated: <span id="lastUpdated">3 June 2026</span></div>
+    <div class="header-pill">🏥 15 providers compared</div>
+    <div class="header-pill">👥 5,000+ subscribers</div>
+    <div class="header-pill">💊 Oral pills comparison coming soon</div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════
+     ORAL OPTIONS COMING SOON HERO
+     ════════════════════════════════════ -->
+<div class="oral-hero">
+  <div class="otag">🚀 Coming Soon</div>
+  <h2>GLP-1 Weight Loss <span>Pills Are Coming</span></h2>
+  <p>No injections. No needles. Oral GLP-1 weight loss pills are set to launch across UK providers in 2026 — and we'll compare every price, every dose, every provider the moment they arrive.</p>
+
+  <div class="oral-features">
+    <div class="oral-feat"><span class="icon">💊</span> Oral semaglutide tablets</div>
+    <div class="oral-feat"><span class="icon">📊</span> Full price comparison across all UK providers</div>
+    <div class="oral-feat"><span class="icon">🔔</span> Weekly price alerts by email</div>
+    <div class="oral-feat"><span class="icon">🏆</span> Cheapest price highlighted every week</div>
+  </div>
+
+  <div class="oral-cta-row">
+    <button class="oral-cta-primary" onclick="openStickyAndScroll()">🔔 Notify Me When Pills Launch</button>
+    <a class="oral-cta-secondary" href="#email-capture">Get Weekly Price Alerts</a>
+  </div>
+
+  <div class="oral-timeline">
+    <div class="oral-step">
+      <div class="step-num">1</div>
+      <div class="step-val">Subscribe</div>
+      <div class="step-lbl">Enter your email below</div>
+    </div>
+    <div class="oral-step">
+      <div class="step-num">2</div>
+      <div class="step-val">Weekly Updates</div>
+      <div class="step-lbl">Price changes emailed every Monday</div>
+    </div>
+    <div class="oral-step">
+      <div class="step-num">3</div>
+      <div class="step-val">Pill Launch Alert</div>
+      <div class="step-lbl">First to know when oral options go live</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     NAV TABS
+     ════════════════════════════════════ -->
+<div class="tabs-wrap">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="switchTab('prices',this)">💉 Price Comparison</button>
+    <button class="tab-btn" onclick="switchTab('referral',this)">🎁 Referral Offers <span class="tab-badge">Save up to £94</span></button>
+    <button class="tab-btn" onclick="switchTab('reactivation',this)">🔄 Reactivation Deals <span class="tab-badge">Lapsed patients</span></button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     PRICE FILTER BAR (only shows on prices tab)
+     ════════════════════════════════════ -->
+<div class="filter-bar" id="filterBar">
+  <label>Medication:</label>
+  <select id="medFilter" onchange="applyFilters()">
+    <option value="mounjaro">Mounjaro (Tirzepatide)</option>
+    <option value="wegovy">Wegovy (Semaglutide)</option>
+  </select>
+  <span class="filter-sep">·</span>
+  <label>Dose:</label>
+  <select id="doseFilter" onchange="applyFilters()">
+    <option value="all">All doses</option>
+  </select>
+  <span class="filter-sep">·</span>
+  <label>Sort by:</label>
+  <select id="sortFilter" onchange="applyFilters()">
+    <option value="price">Lowest price first</option>
+    <option value="name">Provider name</option>
+  </select>
+</div>
+
+<main>
+
+  <!-- ════ PRICE COMPARISON TAB ════ -->
+  <div class="section active" id="tab-prices">
+
+    <div class="callout">
+      <div class="ico">⚠️</div>
+      <div>All GLP-1 medications are <strong>prescription-only</strong> in the UK. Prices are per 4-week supply and updated every week — always confirm the final price directly with the provider before purchasing, as prices can change at any time.</div>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-card"><div class="num">5,000+</div><div class="lbl">Subscribers</div></div>
+      <div class="stat-card"><div class="num" id="statProviders">—</div><div class="lbl">Providers compared</div></div>
+      <div class="stat-card"><div class="num" id="statCheapest">—</div><div class="lbl">Cheapest this week</div></div>
+      <div class="stat-card"><div class="num" id="statSaving">—</div><div class="lbl">Max saving vs. most expensive</div></div>
+      <div class="stat-card"><div class="num" id="statDoses">—</div><div class="lbl">Doses compared</div></div>
+      <div class="stat-card"><div class="num">📅</div><div class="lbl">Updated every Monday</div></div>
+    </div>
+
+    <div class="section-head">
+      <h2 id="tableTitle">Mounjaro Price Comparison — All Doses</h2>
+      <span class="sub">Per 4-week supply · Private prescription</span>
+    </div>
+
+    <div id="doseTabsWrap" class="dose-tabs"></div>
+
+    <div class="table-wrap">
+      <table id="priceTable">
+        <thead><tr id="tableHead"></tr></thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <p style="font-size:12px;color:var(--gray-400);margin-bottom:30px;">🏆 = lowest price for that dose &nbsp;·&nbsp; ✓ = included in price &nbsp;·&nbsp; — = not confirmed / varies &nbsp;·&nbsp; Prices verified from provider websites and updated every week.</p>
+
+    <div class="tips-grid">
+      <div class="tip-card"><div class="icon">💊</div><h3>Compare total cost, not just the headline</h3><p>Some providers include consultations, delivery, and aftercare. Others charge extra. Always check what's bundled before ordering.</p></div>
+      <div class="tip-card"><div class="icon">📈</div><h3>Starter vs. maintenance doses</h3><p>You start low (e.g. 2.5mg Mounjaro) and titrate up over months. Pricing differences are largest at higher doses like 10–15mg.</p></div>
+      <div class="tip-card"><div class="icon">🏥</div><h3>In-store vs. online</h3><p>Boots and Asda offer in-store collection. Online-only providers often undercut high street prices but won't offer face-to-face support.</p></div>
+      <div class="tip-card"><div class="icon">🔒</div><h3>Check GPhC registration</h3><p>Only use pharmacies registered with the General Pharmaceutical Council. Verify any UK pharmacy at pharmacyregulation.org.</p></div>
+    </div>
+  </div>
+
+  <!-- ════ REFERRAL OFFERS TAB ════ -->
+  <div class="section" id="tab-referral">
+
+    <div class="section-head" style="margin-bottom:20px;">
+      <h2>🎁 Referral Offers</h2>
+      <span class="sub">Refer a friend and both of you save</span>
+    </div>
+
+    <div class="offer-note">
+      <span>⚠️</span>
+      <div>Referral offers change frequently. Always verify the current offer directly with the provider before referring. Terms and eligibility vary. Prices updated weekly.</div>
+    </div>
+
+    <div class="offer-grid">
+
+      <div class="offer-card">
+        <div class="offer-card-head">
+          <div>
+            <div class="offer-prov">Simple Online Pharmacy</div>
+            <div style="font-size:13px;color:var(--gray-500);margin-top:2px;">Mounjaro &amp; Wegovy</div>
+          </div>
+          <div class="offer-saving">£40<small>you save</small></div>
+        </div>
+        <div class="offer-card-body">
+          <div class="offer-desc">Earn <strong>£40 credit</strong> for every new patient who uses your referral code. Your friend also saves <strong>£40 off their first order</strong>. Credit applied automatically after their first successful order.</div>
+          <div class="offer-tags">
+            <span class="offer-tag green">Both save</span>
+            <span class="offer-tag blue">Mounjaro</span>
+            <span class="offer-tag blue">Wegovy</span>
+            <span class="offer-tag amber">No limit on referrals</span>
+          </div>
+          <div class="offer-expiry">🕐 Ongoing — verify current terms at checkout</div>
+          <a class="offer-cta" href="https://www.simpleonlinepharmacy.co.uk" target="_blank" rel="noopener">Get referral link →</a>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-card-head">
+          <div>
+            <div class="offer-prov">MedExpress</div>
+            <div style="font-size:13px;color:var(--gray-500);margin-top:2px;">Mounjaro &amp; Wegovy</div>
+          </div>
+          <div class="offer-saving">£40<small>referee saves</small></div>
+        </div>
+        <div class="offer-card-body">
+          <div class="offer-desc">MedExpress referral programme provides <strong>£40 off</strong> for new patients referred by an existing customer. Referrer typically receives account credit or a discount on their next order.</div>
+          <div class="offer-tags">
+            <span class="offer-tag green">New patients</span>
+            <span class="offer-tag blue">Mounjaro</span>
+            <span class="offer-tag blue">Wegovy</span>
+          </div>
+          <div class="offer-expiry">🕐 Verify current offer directly with MedExpress</div>
+          <a class="offer-cta blue" href="https://www.medexpress.co.uk" target="_blank" rel="noopener">Check offer →</a>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-card-head">
+          <div>
+            <div class="offer-prov">Numan</div>
+            <div style="font-size:13px;color:var(--gray-500);margin-top:2px;">Wegovy</div>
+          </div>
+          <div class="offer-saving">£94<small>off first month</small></div>
+        </div>
+        <div class="offer-card-body">
+          <div class="offer-desc">Numan offers <strong>£94 off the first month</strong> of Wegovy for new patients. This is one of the largest first-month discounts currently available for injectable GLP-1s in the UK.</div>
+          <div class="offer-tags">
+            <span class="offer-tag green">New patients only</span>
+            <span class="offer-tag blue">Wegovy</span>
+            <span class="offer-tag purple">Largest discount</span>
+          </div>
+          <div class="offer-expiry">🕐 Promotional — verify availability before ordering</div>
+          <a class="offer-cta blue" href="https://www.numan.com/weight-loss" target="_blank" rel="noopener">Claim offer →</a>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-card-head">
+          <div>
+            <div class="offer-prov">Pharmacy2U</div>
+            <div style="font-size:13px;color:var(--gray-500);margin-top:2px;">Mounjaro &amp; Wegovy</div>
+          </div>
+          <div class="offer-saving">£60<small>off first order</small></div>
+        </div>
+        <div class="offer-card-body">
+          <div class="offer-desc">Pharmacy2U discount codes (e.g. <strong>QWQT8W</strong>) offer £45–£60 off first orders. These are often shared via referral or found through comparison sites. Always verify the code is active before ordering.</div>
+          <div class="offer-tags">
+            <span class="offer-tag green">New patients</span>
+            <span class="offer-tag blue">Mounjaro</span>
+            <span class="offer-tag blue">Wegovy</span>
+            <span class="offer-tag amber">Code required</span>
+          </div>
+          <div class="offer-expiry">🕐 Codes change — verify current code before use</div>
+          <a class="offer-cta blue" href="https://www.pharmacy2u.co.uk" target="_blank" rel="noopener">Check offer →</a>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-card-head">
+          <div>
+            <div class="offer-prov">Bolt Pharmacy</div>
+            <div style="font-size:13px;color:var(--gray-500);margin-top:2px;">Mounjaro &amp; Wegovy</div>
+          </div>
+          <div class="offer-saving">£30<small>off first month</small></div>
+        </div>
+        <div class="offer-card-body">
+          <div class="offer-desc">Bolt Pharmacy runs a <strong>£30 off your first month</strong> introductory promotion. Subscribe &amp; Save plan locks in discounted monthly pricing. One of the more transparently priced providers.</div>
+          <div class="offer-tags">
+            <span class="offer-tag green">New patients</span>
+            <span class="offer-tag blue">Mounjaro</span>
+            <span class="offer-tag blue">Wegovy</span>
+            <span class="offer-tag purple">Subscribe &amp; Save</span>
+          </div>
+          <div class="offer-expiry">🕐 Verify at checkout — subject to change</div>
+          <a class="offer-cta blue" href="https://www.boltpharmacy.co.uk" target="_blank" rel="noopener">Claim offer →</a>
+        </div>
+      </div>
+
+      <div class="offer-card" style="border:2px dashed var(--gray-200);background:var(--gray-50);">
+        <div class="offer-card-head">
+          <div>
+            <div class="offer-prov" style="color:var(--gray-500);">More offers coming</div>
+          </div>
+        </div>
+        <div class="offer-card-body">
+          <div class="offer-desc" style="color:var(--gray-400);">We update referral offers every week. Subscribe to our email list to get the latest deals and discounts delivered to your inbox every Monday.</div>
+          <button class="offer-cta" onclick="document.getElementById('email-capture').scrollIntoView({behavior:'smooth'})" style="background:var(--gray-400);cursor:pointer;border:none;">Get weekly offers →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════ REACTIVATION OFFERS TAB ════ -->
+  <div class="section" id="tab-reactivation">
+
+    <div class="section-head" style="margin-bottom:20px;">
+      <h2>🔄 Reactivation &amp; Return Offers</h2>
+      <span class="sub">For patients who paused or switched provider</span>
+    </div>
+
+    <div class="offer-note">
+      <span>⚠️</span>
+      <div>Reactivation offers are often not publicly advertised — they are sent directly to lapsed patients. Contact your previous provider to ask about any return or pause-and-resume deals. Offers vary by provider and patient history.</div>
+    </div>
+
+    <div class="offer-grid">
+
+      <div class="offer-card">
+        <div class="offer-card-head">
+          <div>
+            <div class="offer-prov">Numan</div>
+            <div style="font-size:13px;color:var(--gray-500);margin-top:2px;">Returning patients</div>
+          </div>
+          <div class="offer-saving" style="font-size:18px;">Price<small>lock option</small></div>
+        </div>
+        <div class="offer-card-body">
+          <div class="offer-desc">Numan allows returning patients to <strong>resume treatment at their previous dose level</strong> without restarting the titration schedule. Occasional win-back discount codes are sent by email to lapsed subscribers — check your inbox or contact support directly.</div>
+          <div class="offer-tags">
+            <span class="offer-tag green">Returning patients</span>
+            <span class="offer-tag blue">Mounjaro</span>
+            <span class="offer-tag blue">Wegovy</span>
+          </div>
+          <div class="offer-expiry">💡 Contact Numan directly to ask about return offers</div>
+          <a class="offer-cta blue" href="https://www.numan.com/weight-loss" target="_blank" rel="noopener">Contact Numan →</a>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-card-head">
+          <div>
+            <div class="offer-prov">Juniper</div>
+            <div style="font-size:13px;color:var(--gray-500);margin-top:2px;">Pause &amp; resume</div>
+          </div>
+          <div class="offer-saving" style="font-size:18px;">Pause<small>anytime</small></div>
+        </div>
+        <div class="offer-card-body">
+          <div class="offer-desc">Juniper's membership allows patients to <strong>pause their programme</strong> and resume without penalty. If you've lapsed, Juniper often sends personalised offers to previous members — contact their team for current reactivation pricing.</div>
+          <div class="offer-tags">
+            <span class="offer-tag green">Flexible pausing</span>
+            <span class="offer-tag blue">Mounjaro</span>
+            <span class="offer-tag purple">Programme model</span>
+          </div>
+          <div class="offer-expiry">💡 Check your email or contact Juniper support</div>
+          <a class="offer-cta blue" href="https://www.myjuniper.co.uk" target="_blank" rel="noopener">Contact Juniper →</a>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-card-head">
+          <div>
+            <div class="offer-prov">Bolt Pharmacy</div>
+            <div style="font-size:13px;color:var(--gray-500);margin-top:2px;">Switch &amp; save</div>
+          </div>
+          <div class="offer-saving">£30<small>switch discount</small></div>
+        </div>
+        <div class="offer-card-body">
+          <div class="offer-desc">Patients switching <strong>from another provider to Bolt</strong> may be eligible for £30 off their first month. Bolt's at-cost pricing model means ongoing costs are typically lower than where you may have started — making it a popular switch destination.</div>
+          <div class="offer-tags">
+            <span class="offer-tag green">New to Bolt</span>
+            <span class="offer-tag blue">Mounjaro</span>
+            <span class="offer-tag blue">Wegovy</span>
+            <span class="offer-tag amber">Switching patients</span>
+          </div>
+          <div class="offer-expiry">🕐 Verify current offer at checkout</div>
+          <a class="offer-cta" href="https://www.boltpharmacy.co.uk" target="_blank" rel="noopener">Switch to Bolt →</a>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-card-head">
+          <div>
+            <div class="offer-prov">SheMed</div>
+            <div style="font-size:13px;color:var(--gray-500);margin-top:2px;">Women · Flat-rate pricing</div>
+          </div>
+          <div class="offer-saving">£99<small>starter Wegovy</small></div>
+        </div>
+        <div class="offer-card-body">
+          <div class="offer-desc">SheMed's flat-rate Wegovy pricing of <strong>£159/month for all doses</strong> (first pen £99) makes it one of the most cost-effective options for returning or switching patients — especially at higher maintenance doses where other providers charge significantly more.</div>
+          <div class="offer-tags">
+            <span class="offer-tag green">Women only</span>
+            <span class="offer-tag blue">Wegovy</span>
+            <span class="offer-tag purple">Flat rate all doses</span>
+          </div>
+          <div class="offer-expiry">🕐 Verify current pricing with SheMed</div>
+          <a class="offer-cta blue" href="https://www.shemed.co.uk" target="_blank" rel="noopener">Visit SheMed →</a>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-card-head">
+          <div>
+            <div class="offer-prov">How to ask for a deal</div>
+          </div>
+        </div>
+        <div class="offer-card-body">
+          <div class="offer-desc" style="line-height:1.8;">Most providers don't publicly advertise reactivation offers, but will offer them when asked. Try:<br/><br/>
+          <strong>1.</strong> Email or live chat your previous provider<br/>
+          <strong>2.</strong> Say you're considering returning but found a cheaper alternative<br/>
+          <strong>3.</strong> Ask if they have any return or loyalty discount<br/>
+          <strong>4.</strong> Check your email inbox — lapsed patient offers are often sent automatically after 30–60 days of inactivity</div>
+          <div class="offer-tags">
+            <span class="offer-tag amber">Tip</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="offer-card" style="border:2px dashed var(--gray-200);background:var(--gray-50);">
+        <div class="offer-card-head">
+          <div><div class="offer-prov" style="color:var(--gray-500);">Get weekly deal alerts</div></div>
+        </div>
+        <div class="offer-card-body">
+          <div class="offer-desc" style="color:var(--gray-400);">We track reactivation offers weekly. Subscribe below and we'll email you every Monday with the best current deals — including any win-back offers we discover.</div>
+          <button class="offer-cta" onclick="document.getElementById('email-capture').scrollIntoView({behavior:'smooth'})" style="background:var(--gray-400);cursor:pointer;border:none;">Subscribe for alerts →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════ EMAIL CAPTURE ════ -->
+  <div class="email-section" id="email-capture">
+    <div class="etag">📬 Free Weekly Updates</div>
+    <h2>Be First When <em>GLP-1 Pills Launch</em></h2>
+    <p class="edesc">Get weekly price updates every Monday, pill comparison launch access, and the best referral &amp; reactivation deals — all in one email. No spam, unsubscribe anytime.</p>
+
+    <!-- Formsubmit.co forwards submissions to elizarcco12@gmail.com.
+         NOTE: The first submission will trigger a one-time activation email to that address.
+         Click the activation link to start receiving submissions. -->
+    <form class="email-form-row" onsubmit="handleSubscribe(event)">
+      <input type="email" id="emailInput" placeholder="Enter your email address" required autocomplete="email"/>
+      <button type="submit">Notify Me — Free</button>
+    </form>
+
+    <div class="email-perks">
+      <div class="email-perk"><span class="ck">✓</span> Prices updated every Monday</div>
+      <div class="email-perk"><span class="ck">✓</span> Pill launch alert</div>
+      <div class="email-perk"><span class="ck">✓</span> Best referral deals weekly</div>
+      <div class="email-perk"><span class="ck">✓</span> Reactivation offers</div>
+      <div class="email-perk"><span class="ck">✓</span> No spam · Unsubscribe anytime</div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Pricing Disclaimer:</strong> Prices shown are sourced from publicly available provider websites and are intended as a guide only. <strong>Prices may be inaccurate, out of date, or differ from what you are quoted at checkout.</strong> Always verify the current price directly with the provider before making any purchase decision. Prices are updated weekly but can change at any time without notice, and may vary based on your dose, plan type, eligibility, or ongoing promotions. We are not affiliated with any provider listed and receive no commission or referral fees.
+    <br/><br/>
+    <strong>Medical Disclaimer:</strong> This site is for informational purposes only and does not constitute medical advice. GLP-1 medications are prescription-only in the UK and must be prescribed by a qualified clinician after a clinical assessment. Always consult your GP or a registered prescriber before starting, stopping, or changing any medication.
+    <br/><br/>
+    <strong>Referral &amp; Offer Disclaimer:</strong> Referral and reactivation offers are subject to change at any time and may have eligibility restrictions. Always confirm offer terms directly with the provider before referring or reactivating. We cannot guarantee the availability or accuracy of any offer listed.
+  </div>
+
+</main>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <p>GLP-1 Price Comparison UK &copy; 2026 &nbsp;·&nbsp; Prices updated every Monday &nbsp;·&nbsp;
+  Not affiliated with any provider &nbsp;·&nbsp;
+  Sources: <a href="https://slinic.co.uk" target="_blank">Slinic</a>,
+  <a href="https://onlinedoctor.boots.com" target="_blank">Boots</a>,
+  <a href="https://onlinedoctor.asda.com" target="_blank">Asda</a>,
+  <a href="https://www.medexpress.co.uk" target="_blank">MedExpress</a>,
+  <a href="https://www.boltpharmacy.co.uk" target="_blank">Bolt Pharmacy</a>
+  </p>
+</footer>
+
+<!-- ════ STICKY BOTTOM EMAIL BAR ════ -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sb-text">💊 <strong>GLP-1 Pills Coming Soon</strong> <span>— get notified + weekly price alerts</span></div>
+  <input type="email" id="stickyEmail" placeholder="Your email address" autocomplete="email"/>
+  <button class="sb-btn" onclick="handleStickySubscribe()">Notify Me</button>
+  <button class="sb-close" onclick="closeStickyBar()" aria-label="Close">✕</button>
+</div>
+
+<!-- ════ SUCCESS POPUP ════ -->
+<div class="popup-overlay" id="successPopup" onclick="closePopup(event)">
+  <div class="popup-box">
+    <div class="popup-icon">🎉</div>
+    <h3>You're on the list!</h3>
+    <p>We'll email you every Monday with the latest GLP-1 prices, referral deals, and — the moment they launch — a full comparison of oral weight loss pills.</p>
+    <button class="popup-close-btn" onclick="document.getElementById('successPopup').classList.remove('show')">Got it, thanks!</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  PRICE DATA
+//  Update prices weekly: edit the numbers below, save & re-upload.
+//  Change the last updated date in the <span id="lastUpdated"> tag.
+// ═══════════════════════════════════════════════════════════════
+
+const DATA = {
+  mounjaro: {
+    label: "Mounjaro (Tirzepatide)",
+    doses: ["2.5mg","5mg","7.5mg","10mg","12.5mg","15mg"],
+    providers: [
+      { name:"Slinic", url:"https://slinic.co.uk/shop/mounjaro-weight-loss-uk/", type:"online", typeLabel:"Online", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"2.5mg":139,"5mg":165,"7.5mg":225,"10mg":255,"12.5mg":275,"15mg":285} },
+      { name:"Bolt Pharmacy", url:"https://www.boltpharmacy.co.uk/mounjaro", type:"online", typeLabel:"Online", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"2.5mg":149,"5mg":179,"7.5mg":239,"10mg":269,"12.5mg":289,"15mg":299} },
+      { name:"Asda Online Doctor", url:"https://onlinedoctor.asda.com/uk/mounjaro.html", type:"hybrid", typeLabel:"Online / In-store", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"2.5mg":148.97,"5mg":169,"7.5mg":229,"10mg":259,"12.5mg":279,"15mg":299} },
+      { name:"Simple Online Pharmacy", url:"https://www.simpleonlinepharmacy.co.uk/weight-loss/mounjaro/", type:"online", typeLabel:"Online", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:false, prices:{"2.5mg":169,"5mg":199.99,"7.5mg":259.99,"10mg":299.99,"12.5mg":309.99,"15mg":319.99} },
+      { name:"Pharmacy2U", url:"https://www.pharmacy2u.co.uk/", type:"online", typeLabel:"Online", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:false, prices:{"2.5mg":169.99,"5mg":199.99,"7.5mg":249.99,"10mg":269.99,"12.5mg":289.99,"15mg":299.99} },
+      { name:"MedExpress", url:"https://www.medexpress.co.uk/clinics/weight-loss/mounjaro", type:"online", typeLabel:"Online", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"2.5mg":179.99,"5mg":189.99,"7.5mg":249.99,"10mg":279.99,"12.5mg":299.99,"15mg":309.99} },
+      { name:"Boots Online Doctor", url:"https://onlinedoctor.boots.com/treatments/mounjaro", type:"hybrid", typeLabel:"Online / In-store", consultationIncluded:true, deliveryIncluded:false, aftercareIncluded:true, prices:{"2.5mg":176.97,"5mg":189.97,"7.5mg":267.97,"10mg":302.97,"12.5mg":314.97,"15mg":334.97} },
+      { name:"Morrisons Health Clinic", url:"https://clinic.morrisons.com", type:"hybrid", typeLabel:"Online / In-store", consultationIncluded:true, deliveryIncluded:null, aftercareIncluded:null, prices:{"2.5mg":169,"5mg":189,"7.5mg":249,"10mg":279,"12.5mg":null,"15mg":null} },
+      { name:"Superdrug Online Doctor", url:"https://onlinedoctor.superdrug.com/weight-loss-treatments.html", type:"hybrid", typeLabel:"Online / In-store", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"2.5mg":179,"5mg":199,"7.5mg":249,"10mg":279,"12.5mg":299,"15mg":329} },
+      { name:"Juniper", url:"https://www.myjuniper.co.uk/", type:"online", typeLabel:"Online", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"2.5mg":189,"5mg":199,"7.5mg":259,"10mg":299,"12.5mg":null,"15mg":null} },
+      { name:"Numan", url:"https://www.numan.com/weight-loss", type:"online", typeLabel:"Online", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"2.5mg":229,"5mg":239,"7.5mg":269,"10mg":299,"12.5mg":319,"15mg":339} },
+      { name:"SheMed", url:"https://www.shemed.co.uk/mounjaro-details", type:"online", typeLabel:"Online · Women only", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"2.5mg":149,"5mg":null,"7.5mg":null,"10mg":null,"12.5mg":null,"15mg":null} },
+      { name:"Well Pharmacy", url:"https://www.well.co.uk/", type:"hybrid", typeLabel:"Online / In-store", consultationIncluded:null, deliveryIncluded:null, aftercareIncluded:null, prices:{"2.5mg":null,"5mg":null,"7.5mg":null,"10mg":null,"12.5mg":null,"15mg":null} },
+      { name:"LYV Pharmacy", url:"https://www.lyvpharmacy.co.uk", type:"online", typeLabel:"Online", consultationIncluded:null, deliveryIncluded:null, aftercareIncluded:null, prices:{"2.5mg":null,"5mg":null,"7.5mg":null,"10mg":null,"12.5mg":null,"15mg":null} },
+      { name:"For Hers", url:"https://www.forhers.com/weight-loss", type:"online", typeLabel:"Online · Women only", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"2.5mg":null,"5mg":null,"7.5mg":null,"10mg":null,"12.5mg":null,"15mg":null} }
+    ]
+  },
+  wegovy: {
+    label: "Wegovy (Semaglutide)",
+    doses: ["0.25mg","0.5mg","1mg","1.7mg","2.4mg"],
+    providers: [
+      { name:"Slinic", url:"https://slinic.co.uk/shop/wegovy-weight-loss-uk/", type:"online", typeLabel:"Online", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"0.25mg":99.99,"0.5mg":109.99,"1mg":114.99,"1.7mg":159.99,"2.4mg":209.99} },
+      { name:"SheMed", url:"https://www.shemed.co.uk/wegovy-treatment", type:"online", typeLabel:"Online · Women only", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"0.25mg":99,"0.5mg":159,"1mg":159,"1.7mg":159,"2.4mg":159} },
+      { name:"Morrisons Health Clinic", url:"https://clinic.morrisons.com/weight-loss-service/wegovy", type:"hybrid", typeLabel:"Online / In-store", consultationIncluded:true, deliveryIncluded:null, aftercareIncluded:null, prices:{"0.25mg":99,"0.5mg":119,"1mg":149,"1.7mg":179,"2.4mg":199} },
+      { name:"Bolt Pharmacy", url:"https://www.boltpharmacy.co.uk/wegovy", type:"online", typeLabel:"Online", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"0.25mg":99,"0.5mg":119,"1mg":149,"1.7mg":179,"2.4mg":209} },
+      { name:"Boots Online Doctor", url:"https://onlinedoctor.boots.com/treatments/wegovy", type:"hybrid", typeLabel:"Online / In-store", consultationIncluded:true, deliveryIncluded:false, aftercareIncluded:true, prices:{"0.25mg":99.97,"0.5mg":119.97,"1mg":166.97,"1.7mg":192.97,"2.4mg":205.97} },
+      { name:"MedExpress", url:"https://www.medexpress.co.uk/clinics/weight-loss/wegovy", type:"online", typeLabel:"Online", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"0.25mg":99.99,"0.5mg":119.99,"1mg":149.99,"1.7mg":179.99,"2.4mg":199.99} },
+      { name:"Superdrug Online Doctor", url:"https://onlinedoctor.superdrug.com/weight-loss-treatments.html", type:"hybrid", typeLabel:"Online / In-store", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"0.25mg":99.97,"0.5mg":119.97,"1mg":149.99,"1.7mg":179.99,"2.4mg":205.97} },
+      { name:"Pharmacy2U", url:"https://www.pharmacy2u.co.uk/", type:"online", typeLabel:"Online", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:false, prices:{"0.25mg":99,"0.5mg":119,"1mg":159,"1.7mg":199,"2.4mg":229} },
+      { name:"Simple Online Pharmacy", url:"https://www.simpleonlinepharmacy.co.uk/weight-loss/wegovy/", type:"online", typeLabel:"Online", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:false, prices:{"0.25mg":104.99,"0.5mg":124.99,"1mg":159.99,"1.7mg":189.99,"2.4mg":214.99} },
+      { name:"Asda Online Doctor", url:"https://onlinedoctor.asda.com/uk/wegovy", type:"hybrid", typeLabel:"Online / In-store", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"0.25mg":109,"0.5mg":129,"1mg":159,"1.7mg":189,"2.4mg":219} },
+      { name:"Numan", url:"https://www.numan.com/weight-loss", type:"online", typeLabel:"Online", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"0.25mg":119,"0.5mg":139,"1mg":179,"1.7mg":219,"2.4mg":249} },
+      { name:"Juniper", url:"https://www.myjuniper.co.uk/", type:"online", typeLabel:"Online", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"0.25mg":119,"0.5mg":139,"1mg":169,"1.7mg":199,"2.4mg":229} },
+      { name:"Well Pharmacy", url:"https://www.well.co.uk/", type:"hybrid", typeLabel:"Online / In-store", consultationIncluded:null, deliveryIncluded:null, aftercareIncluded:null, prices:{"0.25mg":null,"0.5mg":null,"1mg":null,"1.7mg":null,"2.4mg":null} },
+      { name:"LYV Pharmacy", url:"https://www.lyvpharmacy.co.uk", type:"online", typeLabel:"Online", consultationIncluded:null, deliveryIncluded:null, aftercareIncluded:null, prices:{"0.25mg":null,"0.5mg":null,"1mg":null,"1.7mg":null,"2.4mg":null} },
+      { name:"For Hers", url:"https://www.forhers.com/weight-loss", type:"online", typeLabel:"Online · Women only", consultationIncluded:true, deliveryIncluded:true, aftercareIncluded:true, prices:{"0.25mg":null,"0.5mg":null,"1mg":null,"1.7mg":null,"2.4mg":null} }
+    ]
+  }
+};
+
+// ═══════════════════════════════════════════════════════════════
+//  TAB SWITCHING
+// ═══════════════════════════════════════════════════════════════
+function switchTab(name, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  document.getElementById('filterBar').style.display = (name === 'prices') ? 'flex' : 'none';
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  PRICE TABLE RENDERING
+// ═══════════════════════════════════════════════════════════════
+let currentMed = "mounjaro", currentDose = "all", currentSort = "price";
+
+function applyFilters() {
+  currentMed  = document.getElementById("medFilter").value;
+  currentDose = document.getElementById("doseFilter").value;
+  currentSort = document.getElementById("sortFilter").value;
+  render();
+}
+
+function setDose(dose) {
+  currentDose = dose;
+  document.getElementById("doseFilter").value = dose;
+  render();
+}
+
+function chipYN(val) {
+  if (val === true)  return '<span class="chip y">✓ Included</span>';
+  if (val === false) return '<span class="chip n">Extra cost</span>';
+  return '<span class="chip">—</span>';
+}
+
+function render() {
+  const med = DATA[currentMed];
+  const doses = med.doses;
+  const providers = [...med.providers];
+
+  const doseFilter = document.getElementById("doseFilter");
+  doseFilter.innerHTML = '<option value="all">All doses</option>' +
+    doses.map(d => `<option value="${d}" ${d===currentDose?'selected':''}>${d}</option>`).join('');
+
+  document.getElementById("doseTabsWrap").innerHTML =
+    `<button class="dose-btn ${currentDose==='all'?'active':''}" onclick="setDose('all')">All doses</button>` +
+    doses.map(d => `<button class="dose-btn ${d===currentDose?'active':''}" onclick="setDose('${d}')">${d}</button>`).join('');
+
+  document.getElementById("tableTitle").textContent =
+    med.label + " Price Comparison" + (currentDose==='all' ? ' — All Doses' : ` — ${currentDose}`);
+
+  const displayDoses = currentDose === 'all' ? doses : [currentDose];
+
+  if (currentSort === 'price') {
+    providers.sort((a,b) => {
+      const aMin = Math.min(...displayDoses.map(d => a.prices[d] ?? Infinity));
+      const bMin = Math.min(...displayDoses.map(d => b.prices[d] ?? Infinity));
+      return aMin - bMin;
+    });
+  } else {
+    providers.sort((a,b) => a.name.localeCompare(b.name));
+  }
+
+  const minByDose = {}, maxByDose = {};
+  displayDoses.forEach(d => {
+    const vals = providers.map(p => p.prices[d]).filter(v => v != null);
+    minByDose[d] = Math.min(...vals);
+    maxByDose[d] = Math.max(...vals);
+  });
+
+  document.getElementById("tableHead").innerHTML =
+    `<th>Provider</th>` +
+    displayDoses.map(d => `<th>${d}</th>`).join('') +
+    `<th>Consultation</th><th>Delivery</th><th>Aftercare</th><th></th>`;
+
+  document.getElementById("tableBody").innerHTML = providers.map(p => {
+    const typeCls = p.type === 'online' ? 'type-online' : 'type-hybrid';
+    const priceCells = displayDoses.map(d => {
+      const v = p.prices[d];
+      if (v == null) return `<td><span class="price-na">—</span></td>`;
+      const isLowest = v <= minByDose[d] + 0.01;
+      const isHighest = v >= maxByDose[d] - 0.01;
+      const cls = isLowest ? 'price-cell price-best' : isHighest ? 'price-cell price-high' : 'price-cell price-mid';
+      return `<td><span class="${cls}">${isLowest?'🏆 ':''}£${v.toFixed(2).replace(/\.00$/,'')}</span></td>`;
+    }).join('');
+    return `<tr>
+      <td><div class="prov-cell"><div class="prov-name">${p.name}</div><span class="prov-type ${typeCls}">${p.typeLabel}</span></div></td>
+      ${priceCells}
+      <td>${chipYN(p.consultationIncluded)}</td>
+      <td>${chipYN(p.deliveryIncluded)}</td>
+      <td>${chipYN(p.aftercareIncluded)}</td>
+      <td><a class="cta-link" href="${p.url}" target="_blank" rel="noopener">Visit →</a></td>
+    </tr>`;
+  }).join('');
+
+  const allPrices = providers.flatMap(p => displayDoses.map(d => p.prices[d]).filter(v => v != null));
+  const cheapestPrice = Math.min(...allPrices);
+  const maxPrice = Math.max(...allPrices);
+  const cheapestProv = providers.find(p => displayDoses.some(d => p.prices[d] != null && p.prices[d] <= cheapestPrice + 0.01));
+  document.getElementById("statProviders").textContent = providers.length;
+  document.getElementById("statCheapest").textContent = cheapestProv ? `£${cheapestPrice.toFixed(2).replace(/\.00$/,'')}` : '—';
+  document.getElementById("statSaving").textContent = isFinite(maxPrice - cheapestPrice) ? `£${(maxPrice-cheapestPrice).toFixed(0)}` : '—';
+  document.getElementById("statDoses").textContent = displayDoses.length;
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  EMAIL SUBSCRIPTION
+//  Uses Formsubmit.co — no backend needed.
+//  First submission triggers a one-time activation email to
+//  elizarcco12@gmail.com. Click the link to start receiving.
+// ═══════════════════════════════════════════════════════════════
+async function submitEmail(email) {
+  try {
+    await fetch('https://formsubmit.co/ajax/elizarcco12@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        _subject: 'New GLP-1 Comparison Subscriber',
+        message: `New subscriber: ${email}`
+      })
+    });
+  } catch(e) { /* fail silently — show success anyway */ }
+  showSuccessPopup();
+}
+
+function handleSubscribe(e) {
+  e.preventDefault();
+  const email = document.getElementById('emailInput').value;
+  if (!email) return;
+  document.getElementById('emailInput').value = '';
+  submitEmail(email);
+}
+
+function handleStickySubscribe() {
+  const email = document.getElementById('stickyEmail').value;
+  if (!email || !email.includes('@')) { document.getElementById('stickyEmail').focus(); return; }
+  document.getElementById('stickyEmail').value = '';
+  submitEmail(email);
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  POPUP
+// ═══════════════════════════════════════════════════════════════
+function showSuccessPopup() {
+  document.getElementById('successPopup').classList.add('show');
+}
+function closePopup(e) {
+  if (e.target === document.getElementById('successPopup')) {
+    document.getElementById('successPopup').classList.remove('show');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  STICKY BAR
+// ═══════════════════════════════════════════════════════════════
+let stickyDismissed = false;
+function closeStickyBar() {
+  stickyDismissed = true;
+  document.getElementById('stickyBar').classList.remove('show');
+}
+function openStickyAndScroll() {
+  document.getElementById('email-capture').scrollIntoView({ behavior: 'smooth' });
+}
+
+window.addEventListener('scroll', () => {
+  if (stickyDismissed) return;
+  const bar = document.getElementById('stickyBar');
+  if (window.scrollY > 400) {
+    bar.classList.add('show');
+  } else {
+    bar.classList.remove('show');
+  }
+}, { passive: true });
+
+// Init
+render();
+</script>
+</body>
+</html>
