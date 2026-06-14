@@ -647,7 +647,7 @@
     <h2>Be First When <em>GLP-1 Pills Launch</em></h2>
     <p class="edesc">Get weekly price updates every Monday, pill comparison launch access, and the best referral &amp; reactivation deals — all in one email. No spam, unsubscribe anytime.</p>
 
-    <!-- Formsubmit.co forwards submissions to elizarcco12@gmail.com.
+    <!-- Formsubmit.co forwards submissions to info@glp1compare.co.
          NOTE: The first submission will trigger a one-time activation email to that address.
          Click the activation link to start receiving submissions. -->
     <form class="email-form-row" onsubmit="handleSubscribe(event)">
@@ -875,11 +875,11 @@ function render() {
 //  EMAIL SUBSCRIPTION
 //  Uses Formsubmit.co — no backend needed.
 //  First submission triggers a one-time activation email to
-//  elizarcco12@gmail.com. Click the link to start receiving.
+//  info@glp1compare.co. Click the link to start receiving.
 // ═══════════════════════════════════════════════════════════════
 async function submitEmail(email) {
   try {
-    await fetch('https://formsubmit.co/ajax/elizarcco12@gmail.com', {
+    await fetch('https://formsubmit.co/ajax/info@glp1compare.co', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
